@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
-from sys import exit as Die
+from sys import exit
 try:
     import sys
     import cv2
     from colordetection import ColorDetector
 except ImportError as err:
-    Die(err)
+    exit(err)
 
 
 class Webcam:
