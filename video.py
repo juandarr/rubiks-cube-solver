@@ -6,7 +6,7 @@ from sys import exit
 try:
     import sys
     import cv2
-    from colordetection import ColorDetector
+    from color_detection import ColorDetector
 except ImportError as err:
     exit(err)
 
@@ -14,7 +14,7 @@ except ImportError as err:
 class Webcam:
 
     def __init__(self):
-        self.cam              = cv2.VideoCapture(1)
+        self.cam              = cv2.VideoCapture(0)
         self.stickers         = self.get_sticker_coordinates('main')
         self.current_stickers = self.get_sticker_coordinates('current')
         self.preview_stickers = self.get_sticker_coordinates('preview')
