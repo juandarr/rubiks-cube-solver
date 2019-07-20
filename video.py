@@ -14,8 +14,9 @@ except ImportError as err:
 class Webcam:
 
     def __init__(self):
+        # Use 0 to set the default camera as input (e.g., built-in camera) and higher indexes for additional cameras
         self.cam              = cv2.VideoCapture(0)
-        self.stickers         = self.get_sticker_coordinates('main')
+        self.main_stickers         = self.get_sticker_coordinates('main')
         self.current_stickers = self.get_sticker_coordinates('current')
         self.preview_stickers = self.get_sticker_coordinates('preview')
 
@@ -50,7 +51,7 @@ class Webcam:
 
     def draw_main_stickers(self, frame):
         """Draws the 9 stickers in the frame."""
-        for x,y in self.stickers:
+        for x,y in self.main_stickers:
             cv2.rectangle(frame, (x,y), (x+30, y+30), (255,255,255), 2)
 
     def draw_current_stickers(self, frame, state):
@@ -109,7 +110,7 @@ class Webcam:
             self.draw_main_stickers(frame)
             self.draw_preview_stickers(frame, preview)
 
-            for index,(x,y) in enumerate(self.stickers):
+            for index,(x,y) in enumerate(self.main_stickers):
                 roi          = hsv[y:y+32, x:x+32]
                 avg_hsv      = ColorDetector.average_hsv(roi)
                 color_name   = ColorDetector.get_color_name(avg_hsv)
