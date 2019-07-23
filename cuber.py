@@ -24,8 +24,8 @@ class Qbr:
     def run(self):
         state         = webcam.scan()
         if not state:
-            print('\033[0;33m[QBR SCAN ERROR] Ops, you did not scan in all 6 sides.')
-            print('Please try again.\033[0m')
+            print('[QBR SCAN ERROR] Ops, you did not scan in all 6 sides.')
+            print('/nPlease try again.')
             exit(1)
 
         unsolvedState = combine.sides(state)
@@ -33,8 +33,8 @@ class Qbr:
             algorithm     = kociemba.solve(unsolvedState)
             length        = len(algorithm.split(' '))
         except Exception as err:
-            print('\033[0;33m[QBR SOLVE ERROR] Ops, you did not scan in all 6 sides correctly.')
-            print('Please try again.\033[0m')
+            print('[QBR SOLVE ERROR] Ops, you did not scan in all 6 sides correctly.')
+            print('/nPlease try again.')
             exit(1)
 
         print('-- SOLUTION --')
